@@ -1,6 +1,12 @@
 ﻿#include <iostream>
-#include <math.h>
+#include "vec2.h"
+
 using namespace std;
+
+int clamp(int value, int MIN, int MAX) {
+    int a = fmax(fmin(value, MAX), MIN);
+    return a;
+}
 
 int main()
 {
@@ -18,16 +24,15 @@ int main()
         {
             for (int j = 0; j < height; j++)
             {
-                float x = (float)i / width * 2.0f - 1.0f; // делаю ширину экрана от -1 до 1
-                float y = (float)j / height * 2.0f - 1.0f; // делаю высоту экрана от -1 до 1
+                vec2 uv = vec2(i, j) / vec2(width ,height) * 2.0f - 1.0f; // нормализованные координаты пикселя
+                
                 char symbol= ' ';              
-                x *= aspect * pixel_aspect;
-                x += sin(time * 0.002);
+                uv.x *= aspect * pixel_aspect;
+                uv.x += sin(time * 0.002);
 
-                float dist = sqrt(x * x + y * y); // вычисляю длину в символах
+                float dist = sqrt(uv.x * uv.x + uv.y * uv.y); // вычисляю длину в символах
                 int color_index = (int)1.0f / dist; // индекс символа в градиенте
-                if(color_index<0) color_index = 0; // ограничиваю индекс градиента
-                else if(color_index > grdienst_size) color_index = grdienst_size; // ограничиваю индекс градиента
+                color_index = clamp((int)1.0f / dist, 0, grdienst_size); // ограничиваю индекс градиента
 
                 symbol = gradient[color_index]; // получаю символ из градиента
                 screen[i + j * width] = symbol;
