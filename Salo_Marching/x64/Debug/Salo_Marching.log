@@ -1,0 +1,4 @@
+﻿  Salo_Marching.cpp
+C:\Users\Тимофей\Documents\GitHub\Salo_Marching\Salo_Marching\Salo_Marching.cpp(25,25): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+C:\Users\Тимофей\Documents\GitHub\Salo_Marching\Salo_Marching\Salo_Marching.cpp(28,33): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+  Salo_Marching.vcxproj -> C:\Users\Тимофей\Documents\GitHub\Salo_Marching\x64\Debug\Salo_Marching.exe
